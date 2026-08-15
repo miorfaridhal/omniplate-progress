@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OmniPlate Build Progress</title>
+<style>
+:root{
+  --bg:#F4EFE8; --surface:#FFFFFF; --surface-2:#FAF6F0;
+  --ink:#1C1410; --ink-2:#40352E; --muted:#71645B; --line:#E7DED3;
+  --accent:#C2410C; --accent-soft:#FBEADF; --espresso:#1A120C;
+  --done:#15803D; --done-soft:#E4F0E7;
+  --prog:#B45309; --prog-soft:#FBEBD6;
+  --todo:#8B7F76; --todo-soft:#EEE8E1;
+  --shadow:0 1px 2px rgba(28,20,16,.05),0 12px 30px -12px rgba(28,20,16,.16);
+  --shadow-sm:0 1px 2px rgba(28,20,16,.05),0 5px 14px -8px rgba(28,20,16,.13);
+  --r:13px; --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#151110; --surface:#1E1815; --surface-2:#251D18; --ink:#F5EDE7; --ink-2:#D8C8BC; --muted:#A99C92; --line:#362D27;
+  --accent:#F0703A; --accent-soft:rgba(240,112,58,.16); --espresso:#0E0B09;
+  --done:#54A873; --done-soft:rgba(84,168,115,.15);
+  --prog:#D89A4B; --prog-soft:rgba(216,154,75,.16);
+  --todo:#9C8F85; --todo-soft:rgba(156,143,133,.14);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 34px -14px rgba(0,0,0,.6);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4),0 6px 16px -9px rgba(0,0,0,.5);
+}}
+:root[data-theme="dark"]{
+  --bg:#151110; --surface:#1E1815; --surface-2:#251D18; --ink:#F5EDE7; --ink-2:#D8C8BC; --muted:#A99C92; --line:#362D27;
+  --accent:#F0703A; --accent-soft:rgba(240,112,58,.16); --espresso:#0E0B09;
+  --done:#54A873; --done-soft:rgba(84,168,115,.15);
+  --prog:#D89A4B; --prog-soft:rgba(216,154,75,.16);
+  --todo:#9C8F85; --todo-soft:rgba(156,143,133,.14);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 34px -14px rgba(0,0,0,.6);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4),0 6px 16px -9px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;line-height:1.15;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.eyebrow{font-size:11px;font-weight:750;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+.sec{padding:34px 0}
+.sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.sec-h h2{font-size:20px}
+.sec-h .hint{font-size:13px;color:var(--muted)}
+
+/* header */
+header.top{background:linear-gradient(165deg,#1A120C,#2A1A11 60%,#150E09);color:#FAF2EB;border-bottom:1px solid #000}
+.top-in{padding:30px 0 26px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.brand .mk{width:28px;height:28px;border-radius:8px;background:linear-gradient(140deg,#EA580C,#C2410C 60%,#7C2D12);display:grid;place-items:center;color:#fff;font-size:14px}
+header.top h1{font-size:clamp(24px,3.6vw,34px);margin-top:16px;letter-spacing:-.03em}
+header.top .sub{color:#CDBBAE;margin-top:8px;max-width:60ch;font-size:15px}
+.overall{display:flex;align-items:center;gap:14px;margin-top:20px;flex-wrap:wrap}
+.obar{flex:1;min-width:220px;height:12px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;position:relative}
+.obar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#F59E0B,#EA580C)}
+.obar b{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-size:10px;font-weight:700;color:#fff}
+.tt{position:absolute;top:26px;right:22px;font-size:11.5px;color:#B7A498}
+@media(max-width:640px){.tt{position:static;margin-top:14px}}
+
+/* kpi */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:-26px;position:relative;z-index:3}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:15px 16px;box-shadow:var(--shadow)}
+.kpi .k{font-size:24px;font-weight:800;letter-spacing:-.02em;font-family:var(--mono)}
+.kpi .l{font-size:11.5px;color:var(--muted);margin-top:2px;letter-spacing:.02em}
+.kpi.hl{background:linear-gradient(150deg,var(--accent),#9A3412);color:#fff;border-color:transparent}
+.kpi.hl .l{color:#FBD9C8}
+
+/* status chips */
+.st{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+.st::before{content:"";width:7px;height:7px;border-radius:50%}
+.st.done{background:var(--done-soft);color:var(--done)}.st.done::before{background:var(--done)}
+.st.prog{background:var(--prog-soft);color:var(--prog)}.st.prog::before{background:var(--prog);box-shadow:0 0 0 3px var(--prog-soft)}
+.st.todo{background:var(--todo-soft);color:var(--todo)}.st.todo::before{background:var(--todo)}
+
+/* phase landscape */
+.phases{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:820px){.phases{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.phases{grid-template-columns:1fr}}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:9px}
+.phase.now{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow-sm)}
+.phase .pn{font-size:10.5px;font-weight:750;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.phase h3{font-size:15.5px}
+.phase ul{margin:2px 0 0;padding-left:16px;color:var(--muted);font-size:12.5px;line-height:1.7}
+.phase .pbar{height:6px;border-radius:99px;background:var(--todo-soft);overflow:hidden}
+.phase .pbar i{display:block;height:100%;border-radius:99px}
+.phase.done .pbar i{background:var(--done)}.phase.now .pbar i{background:var(--prog)}
+
+/* milestone list */
+.ms{display:grid;gap:8px}
+.m{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:11px 14px;box-shadow:var(--shadow-sm)}
+.m .id{font-family:var(--mono);font-weight:800;font-size:13px;color:var(--muted);text-align:center}
+.m.done .id{color:var(--done)}.m.prog .id{color:var(--prog)}
+.m .body h4{font-size:14px}
+.m .body p{font-size:12.5px;color:var(--muted);margin-top:1px}
+.m.done{border-left:3px solid var(--done)}
+.m.prog{border-left:3px solid var(--prog)}
+.m.todo{border-left:3px solid var(--line)}
+
+/* architecture map */
+.amap{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:12px}
+.acol{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--shadow-sm)}
+.acol h4{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.comp{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px dashed var(--line);font-size:13px}
+.comp:first-of-type{border-top:none}
+.comp .nm{font-weight:560}
+.comp .nm small{display:block;color:var(--muted);font-weight:400;font-size:11px}
+.dotm{width:9px;height:9px;border-radius:50%;flex:none}
+.dotm.done{background:var(--done)}.dotm.prog{background:var(--prog)}.dotm.todo{background:var(--todo);opacity:.55}
+
+/* action + tracking cards */
+.grid2{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow-sm)}
+.card h3{font-size:16px;margin-bottom:12px}
+.todoli{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px dashed var(--line);font-size:13.5px}
+.todoli:first-of-type{border-top:none}
+.todoli .b{width:16px;height:16px;border-radius:5px;border:2px solid var(--prog);flex:none;margin-top:1px}
+.aurelia{background:linear-gradient(155deg,var(--espresso),#2A1A11);color:#FAF2EB;border-color:transparent}
+.aurelia h3{color:#fff}.aurelia p{color:#CDBBAE;font-size:13px}
+.aurelia a{color:#FDBA74}
+.aurelia .row{display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid rgba(255,255,255,.12);font-size:13px}
+.aurelia .row:first-of-type{border-top:none}
+.aurelia .row b{font-family:var(--mono)}
+
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:6px}
+.tbtn{position:absolute;top:24px;right:22px;width:34px;height:32px;border:1px solid rgba(255,255,255,.25);border-radius:8px;background:rgba(255,255,255,.08);color:#FAF2EB;cursor:pointer}
+footer{border-top:1px solid var(--line);margin-top:20px;padding:26px 0;color:var(--muted);font-size:12.5px}
+footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <button class="tbtn" id="tbtn" title="Toggle theme" aria-label="Toggle theme">◐</button>
+    <div class="brand"><span class="mk">◍</span> OmniPlate</div>
+    <h1>Build Progress</h1>
+    <p class="sub">Where the OmniPlate platform stands right now — by phase, by feature, and across the whole architecture. Effort (man-days) and cost are tracked in <b style="color:#FDBA74">Aurelia</b>.</p>
+    <div class="overall">
+      <div class="obar"><i style="width:16%"></i><b>Phase 1 · 16%</b></div>
+      <span class="st done" style="background:rgba(84,168,115,.18);color:#96E6B0">Phase 0 complete</span>
+      <span class="st prog" style="background:rgba(216,154,75,.2);color:#F0C48A">Phase 1 building</span>
+    </div>
+    <div class="tt mono">Updated 15 Aug 2026</div>
+  </div>
+</header>
+
+<!-- KPIs -->
+<section class="wrap" style="padding-top:0">
+  <div class="kpis">
+    <div class="kpi hl"><div class="k">1 / 5</div><div class="l">Phase in progress</div></div>
+    <div class="kpi"><div class="k">2 / 14</div><div class="l">Phase-1 milestones done</div></div>
+    <div class="kpi"><div class="k">63</div><div class="l">Contract tests passing</div></div>
+    <div class="kpi"><div class="k">✓</div><div class="l">CI green on every push</div></div>
+    <div class="kpi"><div class="k">Aurelia</div><div class="l">Man-days &amp; cost tracked</div></div>
+  </div>
+</section>
+
+<!-- PHASE LANDSCAPE -->
+<section class="sec"><div class="wrap">
+  <div class="sec-h"><span class="eyebrow">The journey</span><h2>Five phases, at a glance</h2><span class="hint">Do the essentials first; earn the rest.</span></div>
+  <div class="phases">
+    <div class="phase done">
+      <div class="pn">Phase 0</div><h3>Architecture</h3>
+      <div class="pbar"><i style="width:100%"></i></div>
+      <span class="st done">Completed</span>
+      <ul><li>Blueprint &amp; scope</li><li>Domain contracts</li><li>Repo &amp; CI</li></ul>
+    </div>
+    <div class="phase now">
+      <div class="pn">Phase 1</div><h3>Reliable till + edge</h3>
+      <div class="pbar"><i style="width:16%"></i></div>
+      <span class="st prog">In progress</span>
+      <ul><li>Sell · operate</li><li>Offline · sync</li><li>Tax e-invoice</li></ul>
+    </div>
+    <div class="phase">
+      <div class="pn">Phase 2</div><h3>More shops</h3>
+      <div class="pbar"><i style="width:0"></i></div>
+      <span class="st todo">Not started</span>
+      <ul><li>Central dashboard</li><li>Menu &amp; prices</li><li>Kitchen screen</li></ul>
+    </div>
+    <div class="phase">
+      <div class="pn">Phase 3</div><h3>Sell &amp; grow</h3>
+      <div class="pbar"><i style="width:0"></i></div>
+      <span class="st todo">Not started</span>
+      <ul><li>Online / QR order</li><li>Stock &amp; loyalty</li><li>Delivery apps</li></ul>
+    </div>
+    <div class="phase">
+      <div class="pn">Phase 4–5</div><h3>Connect &amp; smart</h3>
+      <div class="pbar"><i style="width:0"></i></div>
+      <span class="st todo">Not started</span>
+      <ul><li>Connect any till</li><li>ERP &amp; accounts</li><li>Forecasts &amp; AI</li></ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- PHASE 1 MILESTONES -->
+<section class="sec" style="background:var(--surface-2)"><div class="wrap">
+  <div class="sec-h"><span class="eyebrow">Phase 1 detail</span><h2>Milestone tracker</h2><span class="hint">14 steps, in dependency order</span></div>
+  <div class="ms">
+    <div class="m done"><div class="id">M0</div><div class="body"><h4>Foundation</h4><p>Toolchain (pnpm, TypeScript, tests), CI running the contract gate</p></div><span class="st done">Completed</span></div>
+    <div class="m done"><div class="id">M1</div><div class="body"><h4>Contracts + tests</h4><p>Money, rounding, offline rules, pricing, receipts, order lifecycle — 63 tests</p></div><span class="st done">Completed</span></div>
+    <div class="m prog"><div class="id">S0</div><div class="body"><h4>Sprint-0 wrap-up</h4><p>Record the decisions (ADRs), Go workspace, local dev database</p></div><span class="st prog">In progress</span></div>
+    <div class="m todo"><div class="id">M2</div><div class="body"><h4>The in-shop box (edge)</h4><p>Runs on a real Windows PC, stores sales locally, works offline</p></div><span class="st todo">Next up</span></div>
+    <div class="m todo"><div class="id">M3</div><div class="body"><h4>Printing &amp; cash drawer</h4><p>Receipts and kitchen tickets on a real printer, drawer kick</p></div><span class="st todo">Not started</span></div>
+    <div class="m todo"><div class="id">M4</div><div class="body"><h4>The till screen</h4><p>Tap-friendly ordering, cart, payment, receipt</p></div><span class="st todo">Not started</span></div>
+    <div class="m todo"><div class="id">M5–M7</div><div class="body"><h4>Cloud, sync &amp; the offline test suite</h4><p>Dashboard core, catch-up sync, the tests that prove offline works</p></div><span class="st todo">Not started</span></div>
+    <div class="m todo"><div class="id">M8–M10</div><div class="body"><h4>Shifts, e-invoice &amp; reports</h4><p>Day open/close, tax e-invoices, owner dashboard</p></div><span class="st todo">Not started</span></div>
+    <div class="m todo"><div class="id">M11–M12</div><div class="body"><h4>Rollout &amp; DuitNow QR</h4><p>Set up a shop from a code; scan-to-pay</p></div><span class="st todo">Not started</span></div>
+    <div class="m todo"><div class="id">M13</div><div class="body"><h4>First pilot shop</h4><p>Trades a full week, unattended</p></div><span class="st todo">Not started</span></div>
+  </div>
+</div></section>
+
+<!-- ARCHITECTURE MAP -->
+<section class="sec"><div class="wrap">
+  <div class="sec-h"><span class="eyebrow">The landscape</span><h2>Architecture map</h2><span class="hint">What's built, in progress, and still to come</span></div>
+  <div class="amap">
+    <div class="acol">
+      <h4>Shared foundations</h4>
+      <div class="comp"><span class="nm">Domain model<small>orders, money, rounding, receipts</small></span><span class="dotm done" title="Built"></span></div>
+      <div class="comp"><span class="nm">Event contracts<small>the common language</small></span><span class="dotm done" title="Built"></span></div>
+      <div class="comp"><span class="nm">Connector kit<small>plug-in interfaces (Phase 4)</small></span><span class="dotm prog" title="Interfaces only"></span></div>
+      <div class="comp"><span class="nm">API contracts</span><span class="dotm todo" title="Not started"></span></div>
+    </div>
+    <div class="acol">
+      <h4>The in-shop box (edge)</h4>
+      <div class="comp"><span class="nm">Local engine &amp; database</span><span class="dotm todo" title="Next up"></span></div>
+      <div class="comp"><span class="nm">Offline queue &amp; sync</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Printers, drawer, scanner</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Till connectors (Phase 4)</span><span class="dotm todo"></span></div>
+    </div>
+    <div class="acol">
+      <h4>The cloud</h4>
+      <div class="comp"><span class="nm">Menu, prices &amp; orders</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Sync &amp; reconciliation</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Tax e-invoice service</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Payments</span><span class="dotm todo"></span></div>
+    </div>
+    <div class="acol">
+      <h4>Screens</h4>
+      <div class="comp"><span class="nm">The till</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Kitchen screen</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Manager dashboard</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Staff &amp; customer apps</span><span class="dotm todo"></span></div>
+    </div>
+    <div class="acol">
+      <h4>Behind the scenes</h4>
+      <div class="comp"><span class="nm">Automated checks (CI)<small>green on every change</small></span><span class="dotm done"></span></div>
+      <div class="comp"><span class="nm">Contract tests<small>63 passing</small></span><span class="dotm done"></span></div>
+      <div class="comp"><span class="nm">Offline &amp; hardware tests</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Deployment &amp; hosting</span><span class="dotm prog" title="Partly set up"></span></div>
+    </div>
+  </div>
+  <div class="legend">
+    <span><span class="dotm done" style="display:inline-block;vertical-align:middle;margin-right:5px"></span>Built</span>
+    <span><span class="dotm prog" style="display:inline-block;vertical-align:middle;margin-right:5px"></span>In progress / partial</span>
+    <span><span class="dotm todo" style="display:inline-block;vertical-align:middle;margin-right:5px"></span>Not started</span>
+  </div>
+</div></section>
+
+<!-- ACTION + AURELIA -->
+<section class="sec" style="background:var(--surface-2)"><div class="wrap">
+  <div class="grid2">
+    <div class="card">
+      <h3>Working on right now</h3>
+      <div class="todoli"><span class="b"></span><div><b>Write down the key decisions (ADRs)</b> — a short record of each locked choice, so nothing gets accidentally reversed.</div></div>
+      <div class="todoli"><span class="b"></span><div><b>Set up the code workspace for the in-shop box</b> — the groundwork for the edge software.</div></div>
+      <div class="todoli"><span class="b"></span><div><b>Local test database</b> — so a developer can run the whole thing with one command.</div></div>
+      <div class="todoli"><span class="b"></span><div><b>Then: the in-shop box (M2)</b> — the first piece you can actually run on a real PC.</div></div>
+    </div>
+    <div class="card aurelia">
+      <h3>Tracked in Aurelia</h3>
+      <p>Effort in man-days and cost for every piece of work is recorded and tracked in Aurelia, the companion tracking system.</p>
+      <div style="margin-top:12px">
+        <div class="row"><span>Phase 0 (architecture)</span><b>Done</b></div>
+        <div class="row"><span>Phase 1 progress</span><b>2 / 14</b></div>
+        <div class="row"><span>Man-days &amp; cost</span><b>in Aurelia →</b></div>
+      </div>
+      <p style="margin-top:14px"><a href="https://github.com/miorfaridhal/aurelia" target="_blank" rel="noopener">Open Aurelia ↗</a></p>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="flinks">
+    <a href="https://github.com/miorfaridhal/unified-commerce" target="_blank" rel="noopener">Repository ↗</a>
+    <a href="https://claude.ai/code/artifact/1012d65d-e97f-4eb0-a3f9-e502db5d82e0" target="_blank" rel="noopener">Platform overview ↗</a>
+    <a href="https://github.com/miorfaridhal/aurelia" target="_blank" rel="noopener">Aurelia (tracking) ↗</a>
+  </div>
+  A living snapshot of build progress. The full plan is complete and the build is underway; nothing here is live to customers yet. Status shown as at 15 August 2026.
+</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('tbtn');
+  function sysDark(){return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;}
+  function cur(){var t=root.getAttribute('data-theme');return t?t:(sysDark()?'dark':'light');}
+  if(btn)btn.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';root.setAttribute('data-theme',n);btn.textContent=n==='dark'?'☀':'◐';});
+})();
+</script>
+</body>
+</html>
