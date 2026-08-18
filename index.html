@@ -144,11 +144,11 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
     <h1>Build Progress</h1>
     <p class="sub">Where the OmniPlate platform stands right now — by phase, by feature, and across the whole architecture. Effort (man-days) and cost are tracked in <b style="color:#FDBA74">Aurelia</b>.</p>
     <div class="overall">
-      <div class="obar"><i style="width:21%"></i><b>Phase 1 · 21%</b></div>
+      <div class="obar"><i style="width:50%"></i><b>Phase 1 · 50%</b></div>
       <span class="st done" style="background:rgba(84,168,115,.18);color:#96E6B0">Phase 0 complete</span>
       <span class="st prog" style="background:rgba(216,154,75,.2);color:#F0C48A">Phase 1 building</span>
     </div>
-    <div class="tt mono">Updated 15 Aug 2026</div>
+    <div class="tt mono">Updated 16 Aug 2026</div>
   </div>
 </header>
 
@@ -156,7 +156,7 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
 <section class="wrap" style="padding-top:0">
   <div class="kpis">
     <div class="kpi hl"><div class="k">1 / 5</div><div class="l">Phase in progress</div></div>
-    <div class="kpi"><div class="k">3 / 14</div><div class="l">Phase-1 milestones done</div></div>
+    <div class="kpi"><div class="k">7 / 14</div><div class="l">Phase-1 milestones done</div></div>
     <div class="kpi"><div class="k">63</div><div class="l">Contract tests passing</div></div>
     <div class="kpi"><div class="k">✓</div><div class="l">CI green on every push</div></div>
     <div class="kpi"><div class="k">Aurelia</div><div class="l">Man-days &amp; cost tracked</div></div>
@@ -175,7 +175,7 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
     </div>
     <div class="phase now">
       <div class="pn">Phase 1</div><h3>Reliable till + edge</h3>
-      <div class="pbar"><i style="width:21%"></i></div>
+      <div class="pbar"><i style="width:50%"></i></div>
       <span class="st prog">In progress</span>
       <ul><li>Sell · operate</li><li>Offline · sync</li><li>Tax e-invoice</li></ul>
     </div>
@@ -208,10 +208,10 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
     <div class="m done"><div class="id">M1</div><div class="body"><h4>Contracts + tests</h4><p>Money, rounding, offline rules, pricing, receipts, order lifecycle — 63 tests</p></div><span class="st done">Completed</span></div>
     <div class="m done"><div class="id">S0</div><div class="body"><h4>Sprint-0 wrap-up</h4><p>Decisions recorded (18 ADRs), Go workspace, local dev database</p></div><span class="st done">Completed</span></div>
     <div class="m done"><div class="id">M2</div><div class="body"><h4>The in-shop box (edge)</h4><p>Runs on a real Windows PC, stores sales locally, works offline</p></div><span class="st done">Completed</span></div>
-    <div class="m prog"><div class="id">M3</div><div class="body"><h4>Printing &amp; cash drawer</h4><p>Receipts and kitchen tickets on a real printer, drawer kick</p></div><span class="st prog">Next up</span></div>
-    <div class="m todo"><div class="id">M4</div><div class="body"><h4>The till screen</h4><p>Tap-friendly ordering, cart, payment, receipt</p></div><span class="st todo">Not started</span></div>
-    <div class="m todo"><div class="id">M5–M7</div><div class="body"><h4>Cloud, sync &amp; the offline test suite</h4><p>Dashboard core, catch-up sync, the tests that prove offline works</p></div><span class="st todo">Not started</span></div>
-    <div class="m todo"><div class="id">M8–M10</div><div class="body"><h4>Shifts, e-invoice &amp; reports</h4><p>Day open/close, tax e-invoices, owner dashboard</p></div><span class="st todo">Not started</span></div>
+    <div class="m todo"><div class="id">M3</div><div class="body"><h4>Printing &amp; cash drawer</h4><p>Receipts and kitchen tickets on a real printer — parked until we have one on hand</p></div><span class="st todo">Parked · hardware</span></div>
+    <div class="m done"><div class="id">M4</div><div class="body"><h4>The till screen</h4><p>Tap-friendly ordering, cart, modifiers, payment, receipt</p></div><span class="st done">Completed</span></div>
+    <div class="m done"><div class="id">M5–M7</div><div class="body"><h4>Cloud, sync &amp; the offline proof</h4><p>Cloud core, catch-up sync, and the tests that prove offline works end-to-end</p></div><span class="st done">Completed</span></div>
+    <div class="m prog"><div class="id">M8–M10</div><div class="body"><h4>Shifts, e-invoice &amp; reports</h4><p>Day open/close, tax e-invoices, owner dashboard</p></div><span class="st prog">Next up</span></div>
     <div class="m todo"><div class="id">M11–M12</div><div class="body"><h4>Rollout &amp; DuitNow QR</h4><p>Set up a shop from a code; scan-to-pay</p></div><span class="st todo">Not started</span></div>
     <div class="m todo"><div class="id">M13</div><div class="body"><h4>First pilot shop</h4><p>Trades a full week, unattended</p></div><span class="st todo">Not started</span></div>
   </div>
@@ -231,29 +231,29 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
     <div class="acol">
       <h4>The in-shop box (edge)</h4>
       <div class="comp"><span class="nm">Local engine &amp; database<small>local API + SQLite, offline-ready</small></span><span class="dotm done" title="Built"></span></div>
-      <div class="comp"><span class="nm">Offline queue &amp; sync</span><span class="dotm todo"></span></div>
-      <div class="comp"><span class="nm">Printers, drawer, scanner</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Offline queue &amp; sync<small>outbox, backoff, dead-letter</small></span><span class="dotm done" title="Built"></span></div>
+      <div class="comp"><span class="nm">Printers, drawer, scanner<small>parked · needs hardware</small></span><span class="dotm todo"></span></div>
       <div class="comp"><span class="nm">Till connectors (Phase 4)</span><span class="dotm todo"></span></div>
     </div>
     <div class="acol">
       <h4>The cloud</h4>
-      <div class="comp"><span class="nm">Menu, prices &amp; orders</span><span class="dotm todo"></span></div>
-      <div class="comp"><span class="nm">Sync &amp; reconciliation</span><span class="dotm todo"></span></div>
-      <div class="comp"><span class="nm">Tax e-invoice service</span><span class="dotm todo"></span></div>
-      <div class="comp"><span class="nm">Payments</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Menu, prices &amp; orders<small>tenant-isolated (row-level security)</small></span><span class="dotm done" title="Built"></span></div>
+      <div class="comp"><span class="nm">Sync &amp; reconciliation<small>idempotent ingest, counts match</small></span><span class="dotm done" title="Built"></span></div>
+      <div class="comp"><span class="nm">Tax e-invoice service<small>M9</small></span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Payments<small>M12</small></span><span class="dotm todo"></span></div>
     </div>
     <div class="acol">
       <h4>Screens</h4>
-      <div class="comp"><span class="nm">The till</span><span class="dotm todo"></span></div>
-      <div class="comp"><span class="nm">Kitchen screen</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">The till<small>ordering, cart, tender, receipt</small></span><span class="dotm done" title="Built"></span></div>
+      <div class="comp"><span class="nm">Kitchen screen<small>Phase 2</small></span><span class="dotm todo"></span></div>
       <div class="comp"><span class="nm">Manager dashboard</span><span class="dotm todo"></span></div>
       <div class="comp"><span class="nm">Staff &amp; customer apps</span><span class="dotm todo"></span></div>
     </div>
     <div class="acol">
       <h4>Behind the scenes</h4>
       <div class="comp"><span class="nm">Automated checks (CI)<small>green on every change</small></span><span class="dotm done"></span></div>
-      <div class="comp"><span class="nm">Contract tests<small>63 passing</small></span><span class="dotm done"></span></div>
-      <div class="comp"><span class="nm">Offline &amp; hardware tests</span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Tests<small>contracts, edge, cloud &amp; offline — all green</small></span><span class="dotm done"></span></div>
+      <div class="comp"><span class="nm">Offline &amp; hardware tests<small>offline suite done; hardware pending</small></span><span class="dotm prog" title="Offline done, hardware pending"></span></div>
       <div class="comp"><span class="nm">Deployment &amp; hosting</span><span class="dotm prog" title="Partly set up"></span></div>
     </div>
   </div>
@@ -269,16 +269,16 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
   <div class="grid2">
     <div class="card">
       <h3>Working on right now</h3>
-      <div class="todoli"><span class="b"></span><div><b>Printing &amp; the cash drawer (M3)</b> — receipts and kitchen tickets on a real printer, and popping the drawer.</div></div>
-      <div class="todoli"><span class="b"></span><div><b>The till screen (M4)</b> — the tap-friendly ordering screen your staff will actually use.</div></div>
-      <div class="todoli"><span class="b"></span><div><b>Cloud core &amp; catch-up sync</b> — the dashboard, and the sync that reconciles every sale.</div></div>
+      <div class="todoli"><span class="b"></span><div><b>Per-item tax — 6% food / 8% alcohol</b> on the same bill, so the numbers match what the pitch now promises.</div></div>
+      <div class="todoli"><span class="b"></span><div><b>Shifts &amp; day close (M8)</b> — open and close the day, void/refund with sign-off, full audit trail.</div></div>
+      <div class="todoli"><span class="b"></span><div><b>Tax e-invoices (M9)</b> — the compliance-forced sales window is open right now.</div></div>
     </div>
     <div class="card aurelia">
       <h3>Tracked in Aurelia</h3>
       <p>Effort in man-days and cost for every piece of work is recorded and tracked in Aurelia, the companion tracking system.</p>
       <div style="margin-top:12px">
         <div class="row"><span>Phase 0 (architecture)</span><b>Done</b></div>
-        <div class="row"><span>Phase 1 progress</span><b>3 / 14</b></div>
+        <div class="row"><span>Phase 1 progress</span><b>7 / 14</b></div>
         <div class="row"><span>Man-days &amp; cost</span><b>in Aurelia</b></div>
       </div>
     </div>
@@ -286,7 +286,7 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
 </div></section>
 
 <footer><div class="wrap">
-  A living snapshot of build progress. The full plan is complete and the build is underway; nothing here is live to customers yet. Status shown as at 15 August 2026.
+  A living snapshot of build progress. The full plan is complete and the build is underway; nothing here is live to customers yet. Status shown as at 16 August 2026.
 </div></footer>
 
 <script>
