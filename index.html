@@ -148,7 +148,7 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
       <span class="st done" style="background:rgba(84,168,115,.18);color:#96E6B0">Phase 0 complete</span>
       <span class="st prog" style="background:rgba(216,154,75,.2);color:#F0C48A">Phase 1 building</span>
     </div>
-    <div class="tt mono">Updated 19 Aug 2026</div>
+    <div class="tt mono">Updated 20 Aug 2026</div>
   </div>
 </header>
 
@@ -212,7 +212,8 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
     <div class="m done"><div class="id">M4</div><div class="body"><h4>The till screen</h4><p>Tap-friendly ordering, cart, modifiers, payment, receipt</p></div><span class="st done">Completed</span></div>
     <div class="m done"><div class="id">M5–M7</div><div class="body"><h4>Cloud, sync &amp; the offline proof</h4><p>Cloud core, catch-up sync, and the tests that prove offline works end-to-end</p></div><span class="st done">Completed</span></div>
     <div class="m done"><div class="id">M8</div><div class="body"><h4>Day operations</h4><p>Open/close a shift, X/Z reports, void/refund/discount sign-off, staff PIN &amp; audit — round-trips from the till through the in-shop box to the cloud</p></div><span class="st done">Completed</span></div>
-    <div class="m todo"><div class="id">M9–M10</div><div class="body"><h4>e-Invoice &amp; reports</h4><p>Tax e-invoices, owner dashboard</p></div><span class="st todo">Next up</span></div>
+    <div class="m prog"><div class="id">M9</div><div class="body"><h4>Tax e-Invoice (MyInvois)</h4><p>Map, validate, submit, queue offline &amp; archive — built &amp; tested end-to-end against a sandbox stand-in; awaiting LHDN sandbox credentials to certify live</p></div><span class="st prog">In progress</span></div>
+    <div class="m todo"><div class="id">M10</div><div class="body"><h4>Owner dashboard</h4><p>Today / by store / by product / by hour, Z archive, audit</p></div><span class="st todo">Next up</span></div>
     <div class="m todo"><div class="id">M11–M12</div><div class="body"><h4>Rollout &amp; DuitNow QR</h4><p>Set up a shop from a code; scan-to-pay</p></div><span class="st todo">Not started</span></div>
     <div class="m todo"><div class="id">M13</div><div class="body"><h4>First pilot shop</h4><p>Trades a full week, unattended</p></div><span class="st todo">Not started</span></div>
   </div>
@@ -240,7 +241,7 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
       <h4>The cloud</h4>
       <div class="comp"><span class="nm">Menu, prices &amp; orders<small>tenant-isolated (row-level security)</small></span><span class="dotm done" title="Built"></span></div>
       <div class="comp"><span class="nm">Sync &amp; reconciliation<small>idempotent ingest, counts match</small></span><span class="dotm done" title="Built"></span></div>
-      <div class="comp"><span class="nm">Tax e-invoice service<small>M9</small></span><span class="dotm todo"></span></div>
+      <div class="comp"><span class="nm">Tax e-invoice service<small>M9 · awaiting LHDN credentials</small></span><span class="dotm prog" title="Built; pending sandbox onboarding"></span></div>
       <div class="comp"><span class="nm">Payments<small>M12</small></span><span class="dotm todo"></span></div>
     </div>
     <div class="acol">
@@ -271,7 +272,7 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
     <div class="card">
       <h3>Working on right now</h3>
       <div class="todoli"><span class="b" style="background:var(--done);border-color:var(--done)"></span><div><b>Day operations (M8)</b> — open/close a shift, X/Z reports, void/refund/discount sign-off, staff PIN &amp; audit now round-trip from the till to the cloud. <span style="color:var(--done);font-weight:600">Just shipped</span></div></div>
-      <div class="todoli"><span class="b"></span><div><b>Tax e-invoices (M9)</b> — the compliance-forced sales window is open right now.</div></div>
+      <div class="todoli"><span class="b"></span><div><b>Tax e-Invoice (M9)</b> — mapping, validation, offline queue &amp; archive are built and tested; waiting on LHDN sandbox credentials to certify live acceptance.</div></div>
       <div class="todoli"><span class="b" style="background:var(--done);border-color:var(--done)"></span><div><b>Per-item tax — 6% food / 8% alcohol</b> rings on the same bill in the till. <span style="color:var(--done);font-weight:600">Shipped</span></div></div>
     </div>
     <div class="card aurelia">
@@ -287,7 +288,7 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
 </div></section>
 
 <footer><div class="wrap">
-  A living snapshot of build progress. The full plan is complete and the build is underway; nothing here is live to customers yet. Status shown as at 19 August 2026.
+  A living snapshot of build progress. The full plan is complete and the build is underway; nothing here is live to customers yet. Status shown as at 20 August 2026.
 </div></footer>
 
 <script>
