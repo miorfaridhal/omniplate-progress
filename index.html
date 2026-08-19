@@ -144,7 +144,7 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
     <h1>Build Progress</h1>
     <p class="sub">Where the OmniPlate platform stands right now — by phase, by feature, and across the whole architecture. Effort (man-days) and cost are tracked in <b style="color:#FDBA74">Aurelia</b>.</p>
     <div class="overall">
-      <div class="obar"><i style="width:64%"</i><b>Phase 1 · 64%</b></div>
+      <div class="obar"><i style="width:71%"></i><b>Phase 1 · 71%</b></div>
       <span class="st done" style="background:rgba(84,168,115,.18);color:#96E6B0">Phase 0 complete</span>
       <span class="st prog" style="background:rgba(216,154,75,.2);color:#F0C48A">Phase 1 building</span>
     </div>
@@ -156,7 +156,7 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
 <section class="wrap" style="padding-top:0">
   <div class="kpis">
     <div class="kpi hl"><div class="k">1 / 5</div><div class="l">Phase in progress</div></div>
-    <div class="kpi"><div class="k">9 / 14</div><div class="l">Phase-1 milestones done</div></div>
+    <div class="kpi"><div class="k">10 / 14</div><div class="l">Phase-1 milestones done</div></div>
     <div class="kpi"><div class="k">63</div><div class="l">Contract tests passing</div></div>
     <div class="kpi"><div class="k">✓</div><div class="l">CI green on every push</div></div>
     <div class="kpi"><div class="k">Aurelia</div><div class="l">Man-days &amp; cost tracked</div></div>
@@ -175,7 +175,7 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
     </div>
     <div class="phase now">
       <div class="pn">Phase 1</div><h3>Reliable till + edge</h3>
-      <div class="pbar"><i style="width:64%"</i></div>
+      <div class="pbar"><i style="width:71%"></i></div>
       <span class="st prog">In progress</span>
       <ul><li>Sell · operate</li><li>Offline · sync</li><li>Tax e-invoice</li></ul>
     </div>
@@ -214,7 +214,8 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
     <div class="m done"><div class="id">M8</div><div class="body"><h4>Day operations</h4><p>Open/close a shift, X/Z reports, void/refund/discount sign-off, staff PIN &amp; audit — round-trips from the till through the in-shop box to the cloud</p></div><span class="st done">Completed</span></div>
     <div class="m prog"><div class="id">M9</div><div class="body"><h4>Tax e-Invoice (MyInvois)</h4><p>Map, validate, submit, queue offline &amp; archive — built &amp; tested end-to-end against a sandbox stand-in; awaiting LHDN sandbox credentials to certify live</p></div><span class="st prog">In progress</span></div>
     <div class="m done"><div class="id">M10</div><div class="body"><h4>Owner dashboard</h4><p>Today / by store / by product / by hour, the Z-report archive and the audit trail — a served-by-cloud admin screen over the reporting API</p></div><span class="st done">Completed</span></div>
-    <div class="m todo"><div class="id">M11–M12</div><div class="body"><h4>Rollout &amp; DuitNow QR</h4><p>Set up a shop from a code; scan-to-pay</p></div><span class="st todo">Not started</span></div>
+    <div class="m done"><div class="id">M11</div><div class="body"><h4>Fleet &amp; rollout</h4><p>Provision a store from a claim code, health beacons, ring-based updates and rollback</p></div><span class="st done">Completed</span></div>
+    <div class="m todo"><div class="id">M12</div><div class="body"><h4>DuitNow QR</h4><p>Scan-to-pay via one PSP</p></div><span class="st todo">Needs PSP sandbox</span></div>
     <div class="m todo"><div class="id">M13</div><div class="body"><h4>First pilot shop</h4><p>Trades a full week, unattended</p></div><span class="st todo">Not started</span></div>
   </div>
 </div></section>
@@ -271,16 +272,16 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
   <div class="grid2">
     <div class="card">
       <h3>Working on right now</h3>
-      <div class="todoli"><span class="b" style="background:var(--done);border-color:var(--done)"></span><div><b>Owner dashboard (M10)</b> — today, by store, by product, by hour, the Z-report archive and the audit trail, on one screen. <span style="color:var(--done);font-weight:600">Just shipped</span></div></div>
-      <div class="todoli"><span class="b"></span><div><b>Tax e-Invoice (M9)</b> — mapping, validation, offline queue &amp; archive are built and tested; waiting on LHDN sandbox credentials to certify live acceptance.</div></div>
-      <div class="todoli"><span class="b" style="background:var(--done);border-color:var(--done)"></span><div><b>Day operations (M8)</b> — shifts, X/Z, void/refund/discount sign-off, staff PIN &amp; audit round-trip from till to cloud. <span style="color:var(--done);font-weight:600">Shipped</span></div></div>
+      <div class="todoli"><span class="b" style="background:var(--done);border-color:var(--done)"></span><div><b>Fleet &amp; rollout (M11)</b> — provision a store from a claim code, health beacons, ring updates and rollback. <span style="color:var(--done);font-weight:600">Just shipped</span></div></div>
+      <div class="todoli"><span class="b" style="background:var(--done);border-color:var(--done)"></span><div><b>Owner dashboard (M10)</b> — sales, by store/product/hour, the Z-report archive and the audit trail. <span style="color:var(--done);font-weight:600">Shipped</span></div></div>
+      <div class="todoli"><span class="b"></span><div><b>Tax e-Invoice (M9)</b> — built and tested; waiting on LHDN sandbox credentials to certify live acceptance.</div></div>
     </div>
     <div class="card aurelia">
       <h3>Tracked in Aurelia</h3>
       <p>Effort in man-days and cost for every piece of work is recorded and tracked in Aurelia, the companion tracking system.</p>
       <div style="margin-top:12px">
         <div class="row"><span>Phase 0 (architecture)</span><b>Done</b></div>
-        <div class="row"><span>Phase 1 progress</span><b>9 / 14</b></div>
+        <div class="row"><span>Phase 1 progress</span><b>10 / 14</b></div>
         <div class="row"><span>Man-days &amp; cost</span><b>in Aurelia</b></div>
       </div>
     </div>
